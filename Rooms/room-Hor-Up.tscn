@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk553n7h25phu"]
+
+[ext_resource type="Script" path="res://Rooms/room.gd" id="1_ejfji"]
+[ext_resource type="MeshLibrary" uid="uid://dppgpemvu843t" path="res://Tiles.tres" id="2_xd0f2"]
+[ext_resource type="Texture2D" uid="uid://ekeo74uu5jko" path="res://14508.png" id="3_uvwqv"]
+[ext_resource type="PackedScene" uid="uid://c2cqfr5vkwkpx" path="res://Enemies/enemy.tscn" id="4_1xylq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8ql4"]
+albedo_texture = ExtResource("3_uvwqv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_etf5a"]
+material = SubResource("StandardMaterial3D_m8ql4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7wh5b"]
+size = Vector3(26.2756, 24.8131, 1)
+
+[node name="Room-Hor-Up" type="Node3D"]
+script = ExtResource("1_ejfji")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.065, -0.43)
+mesh_library = ExtResource("2_xd0f2")
+cell_size = Vector3(1.957, 2.09, 1.455)
+data = {
+"cells": PackedInt32Array(917521, 0, 65, 917520, 0, 65, 917519, 0, 65, 917518, 0, 65, 917517, 0, 65, 7, 0, 655407, 8, 0, 655407, -196611, 0, 655407, -262136, 0, 655407, -131075, 0, 655407, -65539, 0, 655407, -3, 0, 655407, 262141, 0, 655407, 327677, 0, 655407, -131070, 0, 655407, -131069, 0, 655407, 65535, 0, 655407, 65534, 0, 655407, 65533, 0, 655407, 6, 0, 655407, -65528, 0, 655407, -131064, 0, 655407, -196600, 0, 655407, 196616, 0, 655407, 262152, 0, 655407, -131068, 0, 655407, -131071, 0, 655407, 131074, 0, 655407, 131075, 0, 655407, 393213, 0, 655407, 393214, 0, 655407, 327688, 0, 655407, 327687, 0, 655407, 327686, 0, 655407, 393215, 0, 655407, -262143, 0, 655407, -262140, 0, 655407, -262139, 0, 655407, -262138, 0, 655407, -262137, 0, 655407, -262144, 0, 655407, -196609, 0, 655407, -196610, 0, 655407, -262142, 0, 655407, -262141, 0, 655407, 524296, 0, 655407, 589821, 0, 655407, 524295, 0, 655407, 524294, 0, 655407, 524293, 0, 655407, 524292, 0, 655407, 524291, 0, 655407, 524290, 0, 655407, 524289, 0, 655407, 524288, 0, 655407, 589823, 0, 655407, 589822, 0, 655407)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 0.48, -224.304, 133.679, -2.148)
+visible = false
+mesh = SubResource("QuadMesh_etf5a")
+
+[node name="Objects" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.677, 2.703, 0)
+
+[node name="Enemy" parent="Objects" instance=ExtResource("4_1xylq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14293, -4.29496, 0.313982)
+Name = "Grandparent"
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.90443, 5.13224, 0)
+shape = SubResource("BoxShape3D_7wh5b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.930217, -0.230462, 0.285629, -0.000851189, 0.776902, 0.629621, -0.36701, -0.585927, 0.722491, -27.2977, 11.4657, 7.1349)
+visible = false
+light_energy = 2.214
+shadow_enabled = true
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_exited"]

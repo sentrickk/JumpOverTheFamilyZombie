@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqjuyhfsupun0"]
+
+[ext_resource type="ArrayMesh" uid="uid://b3wjqra6je6t3" path="res://Assets/OBJ/Box.obj" id="1_v6n5l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hynmb"]
+size = Vector3(2.16919, 4.29302, 2.17688)
+
+[node name="Block" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07542, 0)
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0979759, 0)
+mesh = ExtResource("1_v6n5l")
+skeleton = NodePath("")
+
+[node name="Box2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07542, 0)
+mesh = ExtResource("1_v6n5l")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0195954, 0)
+shape = SubResource("BoxShape3D_hynmb")

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://wm2m1yp1qq0w"
+path="res://.godot/imported/Props_Shelf.obj-5f6848f8a01b9e5f3d0132a9b1a73572.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_Shelf.obj-5f6848f8a01b9e5f3d0132a9b1a73572.mesh"]
+
+source_file="res://Assets/OBJ/Props_Shelf.obj"
+dest_files=["res://.godot/imported/Props_Shelf.obj-5f6848f8a01b9e5f3d0132a9b1a73572.mesh", "res://.godot/imported/Props_Shelf.obj-5f6848f8a01b9e5f3d0132a9b1a73572.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

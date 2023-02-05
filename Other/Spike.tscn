@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://6d4dgskangq2"]
+
+[ext_resource type="Script" path="res://Other/Spike.gd" id="1_kllo2"]
+[ext_resource type="ArrayMesh" uid="uid://bmxqo3qjumjx5" path="res://Assets/OBJ/Props_Teleporter_1.obj" id="3_2ce4a"]
+[ext_resource type="Texture2D" uid="uid://b720qj13uvo5p" path="res://Assets/Particle/scorch_01.png" id="3_1717q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7j1o"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_1717q")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_bhx3s"]
+offsets = PackedFloat32Array(0, 0.995349)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_se2rc"]
+gradient = SubResource("Gradient_bhx3s")
+
+[sub_resource type="Curve" id="Curve_b7f3g"]
+_data = [Vector2(0, 0), 0.0, 5.52513, 0, 0, Vector2(1, 0.109091), -1.46961, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3h1ag"]
+curve = SubResource("Curve_b7f3g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bhlv4"]
+gravity = Vector3(0, 20, 0)
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 3.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_3h1ag")
+color_ramp = SubResource("GradientTexture1D_se2rc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4ffma"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_30crr"]
+points = PackedVector3Array(0.18, 2.309, 0, 0.572, -1.317, 0, -0.572, -1.317, 0, -0.18, 2.309, 0)
+
+[node name="Spike" type="Node3D"]
+process_mode = 4
+script = ExtResource("1_kllo2")
+
+[node name="PropsTeleporter1" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_2ce4a")
+
+[node name="ParticlesHeal" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 2.08616e-07, 0, -2.08616e-07, 1, 0, 0, 0, 1, 0.00527971, 0.876328, -0.000836134)
+material_override = SubResource("StandardMaterial3D_f7j1o")
+emitting = false
+amount = 15
+lifetime = 0.59
+randomness = 1.0
+visibility_aabb = AABB(-0.862018, -0.938802, -0.68718, 1.72404, 1.8776, 1.37436)
+process_material = SubResource("ParticleProcessMaterial_bhlv4")
+draw_pass_1 = SubResource("QuadMesh_4ffma")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000283748, 2.18946, -0.00259089)
+shape = SubResource("ConvexPolygonShape3D_30crr")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=3 uid="uid://iivyhf72lgi1"]
+
+[ext_resource type="Script" path="res://Other/UI.gd" id="1_a01eq"]
+[ext_resource type="FontFile" uid="uid://ctupdtt1j6blc" path="res://Assets/compass-gold-v1/CompassGold.ttf" id="1_gbmri"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xbx2"]
+bg_color = Color(0, 0, 0, 0.239216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uaopq"]
+bg_color = Color(1, 0, 0, 0.545098)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a01eq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 16.0
+offset_right = 267.0
+offset_bottom = 52.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_gbmri")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/background = SubResource("StyleBoxFlat_4xbx2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uaopq")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -194.0
+offset_right = 195.0
+offset_bottom = 207.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_gbmri")
+theme_override_font_sizes/font_size = 50
+text = "Press start to reset
+or wait 5 seconds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Win" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -369.0
+offset_top = -275.0
+offset_right = 371.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_gbmri")
+theme_override_font_sizes/font_size = 50
+text = "You beat the game,
+thank you for playing,
+sorry if it was frustrating,
+but im proud of you for finnishing it "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 17.0
+offset_right = -15.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_gbmri")
+theme_override_font_sizes/font_size = 50
+text = "Jump
+"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -57.0
+offset_top = 74.0
+offset_right = -15.0
+offset_bottom = 141.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_gbmri")
+theme_override_font_sizes/font_size = 50
+text = "Lvl 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Heal" type="Label" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 251.0
+offset_top = -32.0
+offset_right = 355.0
+offset_bottom = 94.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 89
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Heal"]
+
+[connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="timeout" from="Heal/Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,156 @@
+[gd_scene load_steps=20 format=3 uid="uid://c1lpgasapei3n"]
+
+[ext_resource type="PackedScene" uid="uid://3ith5bnw0w8k" path="res://Player/PlayerCharacter.tscn" id="1_rire7"]
+[ext_resource type="Texture2D" uid="uid://gjqb2blkhyj2" path="res://Assets/env_sky_003_night.png" id="1_v1sh4"]
+[ext_resource type="Script" path="res://WorldEnvironment.gd" id="2_6dkee"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="2_lujmm"]
+[ext_resource type="PackedScene" uid="uid://dk553n7h25phu" path="res://Rooms/room-Hor-Up.tscn" id="6_hbeg3"]
+[ext_resource type="PackedScene" uid="uid://dge1p3stw70ss" path="res://Rooms/room-Hor-1.tscn" id="7_5lyco"]
+[ext_resource type="PackedScene" uid="uid://c8yqkack2d8mb" path="res://Other/pick_up.tscn" id="7_6fyrc"]
+[ext_resource type="PackedScene" uid="uid://boyuy7ll3la4p" path="res://Rooms/room-End_Right.tscn" id="8_lfdd2"]
+[ext_resource type="PackedScene" uid="uid://jo50xdftg57n" path="res://Rooms/room-Ver-1.tscn" id="9_3fktt"]
+[ext_resource type="PackedScene" uid="uid://coqxp8ikxwsfr" path="res://Rooms/room-Boss-1.tscn" id="9_7sfe0"]
+[ext_resource type="PackedScene" uid="uid://ml08t8pujo8t" path="res://Rooms/room-Hor-2.tscn" id="10_a0rjl"]
+[ext_resource type="PackedScene" uid="uid://dqjuyhfsupun0" path="res://Other/block.tscn" id="11_46a2b"]
+[ext_resource type="PackedScene" uid="uid://bddb2xs3p6hcr" path="res://Rooms/room-Boss-2.tscn" id="12_nkj1e"]
+[ext_resource type="PackedScene" uid="uid://dd761jofx56rb" path="res://Rooms/room-Boss-3.tscn" id="13_ossai"]
+[ext_resource type="PackedScene" uid="uid://cw28y0tdpcuun" path="res://Rooms/room-Ver-2.tscn" id="14_e3q8k"]
+[ext_resource type="PackedScene" uid="uid://iivyhf72lgi1" path="res://Other/UI.tscn" id="16_u0nvy"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tyi6j"]
+panorama = ExtResource("1_v1sh4")
+
+[sub_resource type="Sky" id="Sky_320ac"]
+sky_material = SubResource("PanoramaSkyMaterial_tyi6j")
+
+[sub_resource type="Environment" id="Environment_f2m82"]
+background_mode = 2
+sky = SubResource("Sky_320ac")
+tonemap_mode = 3
+tonemap_exposure = 0.64
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+fog_sky_affect = 0.036
+fog_height = -14.52
+fog_height_density = 0.6809
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143.526, 9.07158, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f2m82")
+script = ExtResource("2_6dkee")
+
+[node name="Player" parent="." instance=ExtResource("1_rire7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -156.374, -15.7732, 0.30276)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9841, 0.177617, 0, -0.177617, 0.9841, -70.9878, -7.67615, 9.80243)
+script = ExtResource("2_lujmm")
+Offset = Vector3(0, 4, 12)
+DistanceX = 10
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.970936, -0.177372, 0.160693, 0.0964064, 0.904366, 0.415725, -0.219064, -0.388151, 0.895182, 5.06464, -9.19616, 7.1349)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.952781, 0.0369808, -0.301397, 0.0964064, 0.904366, 0.415726, 0.287947, -0.425152, 0.858098, 3.04592, -9.19616, 7.1349)
+shadow_enabled = true
+
+[node name="Rooms" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.198, -14.1649, 0)
+
+[node name="Room-Ver3" parent="Rooms" instance=ExtResource("9_3fktt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224.551, 58.9495, 0)
+
+[node name="Room-Hor-Up" parent="Rooms" instance=ExtResource("6_hbeg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.5785, -1.6734, 0)
+
+[node name="PickUp4" parent="Rooms/Room-Hor-Up" instance=ExtResource("7_6fyrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8312, 14.6605, 0)
+Amount = 5.0
+
+[node name="PickUp4" parent="Rooms/Room-Hor-Up/PickUp4" instance=ExtResource("7_6fyrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5139, 48.0495, 0)
+Amount = 5.0
+
+[node name="Room-Hor-Up2" parent="Rooms" instance=ExtResource("6_hbeg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.094, 40.0961, 0)
+
+[node name="PickUp3" parent="Rooms/Room-Hor-Up2" instance=ExtResource("7_6fyrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89355, 6.59836, 0)
+Amount = 5.0
+
+[node name="Room-Hor" parent="Rooms" instance=ExtResource("7_5lyco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46397, 54.7532, 0)
+
+[node name="Room-End-Right" parent="Rooms" instance=ExtResource("8_lfdd2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18586, 0.410481, 0)
+
+[node name="Room-Boss-1" parent="Rooms" instance=ExtResource("9_7sfe0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.514, -1.69446, 0)
+
+[node name="PickUp" parent="Rooms/Room-Boss-1" instance=ExtResource("7_6fyrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1097, -3.87421, 0)
+current = 1
+
+[node name="PickUp2" parent="Rooms/Room-Boss-1" instance=ExtResource("7_6fyrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58586, 8.35503, 0)
+Amount = 5.0
+
+[node name="Room-Boss-2" parent="Rooms" instance=ExtResource("9_7sfe0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.356, 98.5679, 0)
+
+[node name="Room-Hor2" parent="Rooms" instance=ExtResource("10_a0rjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.302, -5.95276, 0)
+
+[node name="Room-Boss-3" parent="Rooms" instance=ExtResource("12_nkj1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4391, 56.8086, 0)
+
+[node name="PickUp2" parent="Rooms/Room-Boss-3" instance=ExtResource("7_6fyrc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95917, 8.25237, 0)
+current = 1
+
+[node name="Room-Boss-4" parent="Rooms" instance=ExtResource("13_ossai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.263, 94.4266, 0)
+
+[node name="Room-Ver" parent="Rooms" instance=ExtResource("14_e3q8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.924, 17.1169, 0)
+
+[node name="Room-Ver2" parent="Rooms" instance=ExtResource("14_e3q8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 204.783, 8.69833, 0)
+
+[node name="Props" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.7204, -20.834, 0)
+
+[node name="Block" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.1375, 7.13515, 0.300923)
+
+[node name="Block2" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.4107, 19.6441, 0.300923)
+
+[node name="Block3" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9716, 19.6441, 0.300923)
+
+[node name="Block6" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.937, 11.2746, 0.300923)
+
+[node name="Block7" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.831, 111.69, 0.300923)
+
+[node name="Block8" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.906, 61.6554, 0.300923)
+
+[node name="Block9" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.6974, 61.5345, 0.300923)
+
+[node name="Block10" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.6759, 51.07, 0.300923)
+
+[node name="Block4" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79801, 69.9214, 0)
+
+[node name="Block5" parent="Props" instance=ExtResource("11_46a2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.92, 69.9214, 0)
+
+[node name="Control" parent="." instance=ExtResource("16_u0nvy")]

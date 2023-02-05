@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://blpjmw44kwsjp"
+path="res://.godot/imported/Props_Vessel.obj-bb1939f88ec559cd2938ad61c934f1ac.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Props_Vessel.obj-bb1939f88ec559cd2938ad61c934f1ac.mesh"]
+
+source_file="res://Assets/OBJ/Props_Vessel.obj"
+dest_files=["res://.godot/imported/Props_Vessel.obj-bb1939f88ec559cd2938ad61c934f1ac.mesh", "res://.godot/imported/Props_Vessel.obj-bb1939f88ec559cd2938ad61c934f1ac.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
